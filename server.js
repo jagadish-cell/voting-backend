@@ -11,6 +11,7 @@ const { router: adminAuth } = require('./adminAuth');
 const { getContractInstance } = require("./web3Utils");
 const app = express();
 const PORT = process.env.PORT || 8000;
+const HOST = '0.0.0.0';
 const SECRET_KEY = process.env.JWT_SECRET || 'your_secret_key';
 const PROVIDER_URL = process.env.PROVIDER_URL || 'http://127.0.0.1:8545';
 
@@ -219,6 +220,6 @@ app.get('/get-vote-counts', async (req, res) => {
 
 loadContract();
 // ✅ Start Server
-app.listen(PORT, () => {
-    console.log(`🚀 Server running on port ${PORT}`);
+app.listen(PORT, HOST, () => {
+  console.log(`🚀 Server running at http://${HOST}:${PORT}`);
 });
