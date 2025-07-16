@@ -220,5 +220,5 @@ app.get('/get-vote-counts', async (req, res) => {
 loadContract();
 // ✅ Start Server
 app.listen(PORT, () => {
-    console.log(`🚀 Server running on http://127.0.0.1:${PORT}`);
+    console.log(`🚀 Server running on port ${PORT}`);
 });
