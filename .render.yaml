@@ -1,0 +1,34 @@
+services:
+  - type: web
+    name: voting-backend
+    env: node
+    plan: free
+    region: oregon
+    buildCommand: npm install
+    startCommand: node index.js
+    rootDir: .
+    envVars:
+      - key: PORT
+        value: 8000
+
+      # PostgreSQL (Railway DB)
+      - key: DB_NAME
+        value: railway
+      - key: DB_USER
+        value: postgres
+      - key: DB_PASSWORD
+        value: NfdtRNmmefGZgxQkuzoAelVFQWUzkpsh
+      - key: DB_HOST
+        value: centerbeam.proxy.rlwy.net
+      - key: DB_PORT
+        value: 52204
+
+      # JWT secret
+      - key: JWT_SECRET
+        value: your_jwt_secret
+
+      # Blockchain settings
+      - key: PROVIDER_URL
+        value: http://127.0.0.1:8545
+      - key: PRIVATE_KEY
+        value: 0x644da021269761ff7ba83286a92d77c139cb19c09b351d1bf44d68843ce96ad9
