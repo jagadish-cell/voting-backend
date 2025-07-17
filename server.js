@@ -20,7 +20,23 @@ const provider = new ethers.JsonRpcProvider(PROVIDER_URL);
 const wallet = new ethers.Wallet(process.env.PRIVATE_KEY).connect(provider);
 
 // ✅ CORS Configuration
-app.use(cors({ origin: "http://localhost:3000", methods: "GET,POST", allowedHeaders: "Content-Type, Authorization" }));
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://online-voting-system-nu-ten.vercel.app"
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("CORS policy violation: Origin not allowed"));
+    }
+  },
+  methods: "GET,POST",
+  allowedHeaders: "Content-Type, Authorization"
+}));
+
 
 // ✅ Middleware
 app.use(express.json());
